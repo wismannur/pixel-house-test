@@ -121,6 +121,13 @@ export default {
     init() {
       this.getListData();
     },
+    spliceData(data, l) {
+      if ( data.length < l ) {
+        return data;
+      } else {
+        return data.slice(0, l) + '...';
+      }
+    },
     getListData() {
       this.$gf().loadingPage().show();
       axios.get( this.$api().listPost() )
@@ -131,8 +138,8 @@ export default {
           let obj = {
             id: e.id,
             userId: e.userId,
-            title: e.title.slice(0, 50) + '...',
-            body: e.body.slice(0, 75) + '...',
+            title: this.spliceData(e.title, 50),
+            body: this.spliceData(e.body, 75),
             title_r: e.title,
             body_r: e.body,
           }
