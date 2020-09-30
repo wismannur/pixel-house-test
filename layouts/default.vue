@@ -6,6 +6,7 @@
       :clipped="clipped"
       fixed
       app
+      class="drawer-lyt-default"
     >
       <v-list>
         <v-list-item
@@ -30,32 +31,37 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
+      </v-btn> -->
+      <!-- <v-btn
         icon
         @click.stop="clipped = !clipped"
       >
         <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
+      </v-btn> -->
+      <!-- <v-btn
         icon
         @click.stop="fixed = !fixed"
       >
         <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+      </v-btn> -->
+      <nuxt-link :to="'/'" class="n-link-e">
+        <v-toolbar-title class="title-eft" v-text="title" />
+      </nuxt-link>
       <v-spacer />
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      </v-btn> -->
+      <client-only>
+        <ColorModePicker />
+      </client-only>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -79,39 +85,69 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    <br>
+    <br>
     <v-footer
       :absolute="!fixed"
       app
+      class="footer-lyt-default"
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} - Bandung, Jawa Barat, Indonesia.</span>
     </v-footer>
+    <LoadingPage />
+    <no-ssr>
+      <MessageHandler />
+      <CancelSaveData />
+    </no-ssr>
   </v-app>
 </template>
 
 <script>
+import ColorModePicker from '~/components/ColorModePicker';
+import LoadingPage from '~/components/LoadingPage';
+import MessageHandler from '~/components/MessageHandler';
+import CancelSaveData from '~/components/CancelSaveData';
+
 export default {
+  components: {
+    ColorModePicker,
+    LoadingPage,
+    MessageHandler,
+    CancelSaveData,
+  },
   data () {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home-flood',
+          title: 'Beranda',
           to: '/'
         },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Pixel House Test'
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.title-eft {
+  color: #00C58E;
+  font-weight: 700;
+}
+.drawer-lyt-default {
+  max-height: calc(100% - 0px) !important;
+}
+.n-link-e {
+  text-decoration: none;
+}
+.footer-lyt-default {
+  z-index: 99 !important;
+}
+</style>
