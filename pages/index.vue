@@ -150,7 +150,6 @@ export default class Index extends Vue {
       url: 'https://steinhq.com/'
     }
   ]
-
 }
 </script>
 
@@ -163,6 +162,7 @@ export default class Index extends Vue {
     align-items: center;
     > h1 {
       color: #00C58E;
+      text-align: center;
     }
     > .content-idx-page {
       width: 100%;
@@ -177,6 +177,7 @@ export default class Index extends Vue {
     > .top-content {
       > h1 {
         font-size: 1.7rem;
+        text-align: center;
       }
       > .content-idx-page {
         flex-direction: column-reverse;

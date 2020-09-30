@@ -126,6 +126,11 @@ export default {
           title: 'Beranda',
           to: '/'
         },
+        {
+          icon: 'mdi-post-outline',
+          title: 'List Posts',
+          to: '/list-post'
+        },
       ],
       miniVariant: false,
       right: true,
